@@ -25,17 +25,8 @@ cleaned_data <-
   #turning millions into billions 
   select(country, year, asset_class, value)
 
-
-  cleaned_data %>% 
-  filter(country != "Total") %>% 
-  filter(country == "China") %>% 
-  filter(year == 2020) %>%
-  mutate(asset_class = factor(asset_class, levels =c( "ST Debt", "LT Debt", "Equity","Total") )) %>% 
-  ggplot() +
-  geom_bar(aes(x = asset_class, y = value ), stat = "identity") +
-  scale_y_continuous(lim = c(0, 3000)) +
-  estelle_theme()
-  
+#export data in long-form that's not publicly available
+write_csv(cleaned_data, "us_foreign_portfolio_claims_2020.csv")
 
 
 
